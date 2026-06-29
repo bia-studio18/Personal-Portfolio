@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Tasbiha Shahzaib | Personal Portfolio</title>
-
+<link rel="icon" type="image/png" href="assets/favicon/favicon.png">
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -185,8 +185,7 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
         <!-- Project 1 -->
         <div class="project-card" data-aos="zoom-in-up">
 
-            <img src="images/projects/portfolio.jpg" alt="Portfolio">
-
+            <img src="images/projects/portfolio.png" alt="Personal Portfolio">
             <div class="project-content">
                 <h3>Personal Portfolio</h3>
 
@@ -261,64 +260,41 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     </div>
 
 </section>
-<!-- Contact Section -->
-<section id="contact" class="contact">
+<form id="contact-form" class="contact-form" data-aos="fade-left">
 
-    <h2 data-aos="fade-up">Contact Me</h2>
+    <input
+        type="text"
+        name="from_name"
+        placeholder="Your Name"
+        required
+    >
 
-    <div class="contact-container">
+    <input
+        type="email"
+        name="from_email"
+        placeholder="Your Email"
+        required
+    >
 
-        <!-- Contact Info -->
-        <div class="contact-info" data-aos="fade-right">
+    <input
+        type="text"
+        name="subject"
+        placeholder="Subject"
+        required
+    >
 
-            <h3>Let's Work Together</h3>
+    <textarea
+        name="message"
+        rows="6"
+        placeholder="Your Message"
+        required
+    ></textarea>
 
-            <p>
-                I'm always open to internship opportunities, freelance work,
-                and meaningful collaborations. If you'd like to work together,
-                feel free to get in touch.
-            </p>
+    <button type="submit" id="send-btn">
+        Send Message
+    </button>
 
-            <div class="info-item">
-                <strong>Name</strong>
-                <p>Tasbiha</p>
-            </div>
-
-            <div class="info-item">
-                <strong>Email</strong>
-                <p>bia.ims1802@gmail.com</p>
-            </div>
-
-            <div class="info-item">
-                <strong>Location</strong>
-                <p>Lahore, Pakistan</p>
-            </div>
-
-            <div class="info-item">
-                <strong>Availability</strong>
-                <p>Open to Internships, Freelance & Collaborations</p>
-            </div>
-
-        </div>
-
-        <!-- Contact Form -->
-        <form class="contact-form" data-aos="fade-left">
-
-            <input type="text" placeholder="Your Name" required>
-
-            <input type="email" placeholder="Your Email" required>
-
-            <input type="text" placeholder="Subject">
-
-            <textarea rows="6" placeholder="Your Message"></textarea>
-
-            <button type="submit">Send Message</button>
-
-        </form>
-
-    </div>
-
-</section>
+</form>
 
 <!-- Footer -->
 <footer class="footer" data-aos="fade-up">
@@ -362,10 +338,17 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
     ↑
 </button>
 <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+<script>
+emailjs.init({
+    publicKey: "471n1L6oQXyzWnIgQ",
+});
+</script>
 <!-- AOS JS -->
 <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
 
 <script>
+    
 AOS.init({
     duration: 1000,
     once: true,
@@ -434,6 +417,44 @@ new Typed("#typing", {
 
 });
 </script>
+<script>
+const contactForm = document.getElementById("contact-form");
+const sendBtn = document.getElementById("send-btn");
 
+contactForm.addEventListener("submit", function (e) {
+
+    e.preventDefault();
+
+    sendBtn.innerHTML = "Sending...";
+    sendBtn.disabled = true;
+
+    emailjs.sendForm(
+        "service_wk102bd",
+        "template_flgbcq8",
+        this
+    )
+    .then(function () {
+
+        alert("✅ Thank you! Your message has been sent successfully.");
+
+        contactForm.reset();
+
+        sendBtn.innerHTML = "Send Message";
+        sendBtn.disabled = false;
+
+    })
+    .catch(function (error) {
+
+        console.log(error);
+
+        alert("❌ Something went wrong. Please try again.");
+
+        sendBtn.innerHTML = "Send Message";
+        sendBtn.disabled = false;
+
+    });
+
+});
+</script>
 </body>
 </html>
