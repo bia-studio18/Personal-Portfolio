@@ -5,34 +5,19 @@ window.addEventListener("DOMContentLoaded", () => {
         preloader.style.display = "none";
     }
 });
-new Typed("#typing",{
-
-strings:[
-
-"Frontend Developer",
-
-"BS Information Technology Student",
-
-"UI Enthusiast",
-
-"JavaScript Learner",
-
-"Open for Internships"
-
-],
-
-typeSpeed:75,
-
-backSpeed:45,
-
-backDelay:1600,
-
-smartBackspace:true,
-
-loop:true,
-
-showCursor:true,
-
-cursorChar:"|"
-
+var typed = new Typed(".multiple-text", {
+    strings: [
+        "BS Information Technology Student",
+        "Front-End Developer",
+        "UI Enthusiast",
+        "JavaScript Learner"
+    ],
+    typeSpeed: 55,
+    backSpeed: 35,
+    backDelay: 1800,
+    startDelay: 500,
+    loop: true,
+    smartBackspace: true,
+    showCursor: true,
+    cursorChar: "|"
 });
